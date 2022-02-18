@@ -76,12 +76,6 @@ function removeAllChildren() {
     }
 }
 
-function clearChart() {
-    data_graph.splice(1);
-    data_graph.push(data_example);
-    drawVisualization();
-}
-
 function createTeamsDOM(response) {
     let teams = document.getElementById("teams");
 
@@ -135,39 +129,6 @@ function createTeamsDOM(response) {
             updateGraph(sessionArray[i]);
         }
     }
-}
-
-function updateGraph(index) {
-    let teams = document.getElementById("teams");
-    let input_team = teams.children[index].children[0];
-
-    let data_team = [];
-    data_team.push(list_teams[index].team.shortDisplayName); // nome do time
-    data_team.push(list_teams[index].stats[3].value);        // jogos
-    data_team.push(list_teams[index].stats[1].value);        // derrotas
-    data_team.push(list_teams[index].stats[2].value);        // empates
-    data_team.push(list_teams[index].stats[0].value);        // vitorias
-    data_team.push(list_teams[index].stats[6].value);        // pontos
-
-    if (input_team.checked) {
-        data_graph.push(data_team);
-
-        if (data_graph[1][0] == 'Exemplo') {
-            data_graph.splice(1, 1);
-        }
-        drawVisualization();
-    }
-    else {
-        var index = data_graph.indexOf(data_team);
-        data_graph.splice(index, 1);
-        
-        if (data_graph.length == 1) {
-            data_graph.push(data_example);
-        }
-        drawVisualization();
-    }
-
-    setStorageAPI(teams);
 }
 
 function setStorageAPI(teams) {
