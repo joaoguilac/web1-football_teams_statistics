@@ -15,14 +15,36 @@
 
     <!-- Requisições AJAX -->
     <script type="text/javascript" src="js/scripts.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/stylesheet.css">
     
     <title>Estatísticas de futebol</title>
 </head>
 
 <body>
-    <h1>Estatísticas de futebol</h1>
+    <br><h1 class="text-center">Comparação de times</h1><br>
+
+    <script>
+        getLeagues();
+    </script>
+    
+    <select name="leagues" id="leagues" class="container-fluid form-select-lg mb-3" onchange="getTeams()">
+    </select>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-4 col-md-4 col-xxl-2" id="teams">
+            </div>
+            <div class="col-sm-8 col-md-8 col-xxl-10">
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
     
     <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
+    <div class="row justify-content-center">
+        
+    </div>
 </body>
 </html>

@@ -2,31 +2,30 @@
 google.charts.load('current', {'packages':['corechart']});
 
 // Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawVisualization);
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
-function drawChart() {
+data_graph = [];
+data_label = ['Times', 'Jogos', 'Derrotas', 'Empates', 'Vitórias', 'Pontos'];
+data_example = ['Exemplo', 38, 12, 14, 12, 50];
+data_graph.push(data_label);
+data_graph.push(data_example);
 
-  // Create the data table.
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Topping');
-  data.addColumn('number', 'Slices');
-  data.addRows([
-    ['Mushrooms', 3],
-    ['Onions', 1],
-    ['Olives', 1],
-    ['Zucchini', 1],
-    ['Pepperoni', 2]
-  ]);
+window.onresize = drawVisualization;
+function drawVisualization() {
+  // Some raw data (not necessarily accurate)
+  var data = google.visualization.arrayToDataTable(data_graph);
 
-  // Set chart options
-  var options = {'title':'How Much Pizza I Ate Last Night',
-                 'width':400,
-                 'height':300};
+  var options = {
+    title : 'Retrospecto dos times na liga (2021)',
+    vAxis: {title: 'Números'},
+    hAxis: {title: 'Times'},
+    seriesType: 'bars',
+    // series: {5: {type: 'line'}}
+  };
 
-  // Instantiate and draw our chart, passing in some options.
-  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  var chart = new google.visualization.ComboChart(document.getElementById('chart'));
   chart.draw(data, options);
 }
